@@ -1,45 +1,58 @@
 // JavaScript Document
 
-/* variables */
-var appVersion
-
-/* carga inicial de la app */
-function onBodyLoad() {    
-	document.addEventListener("deviceready", onDeviceReady, false);
+function onBackbutton() {
+    // the intro div is considered home, so exit if use
+    // wants to go back with button from there
+    if ($('.api-div#api-intro').css('display') === 'block') {
+        console.log("Exiting app");
+        navigator.app.exitApp();
+    } else {    
+        $('.api-div').hide();
+        $('.api-div#api-intro').show();
+        $.mobile.silentScroll(0);
+    }
 }
 
-function onDeviceReady(){
-	$.get("config.xml", function(data){
-		alert($(data).find('widget').attr('version'));
-	});
-	 
-	 
-$.ajax({
-   type: 'POST',
-   data: postData+'&amp;lid='+landmarkID,
-   url: 'http://your-domain.com/comments/save.php',
-   success: function(data){
-	   console.log(data);
-	   alert('Your comment was successfully added');
-	},
-	error: function(){
-		console.log(data);
-		alert('There was an error adding your comment');
-	}
+$(document).ready(function() {   
+    $('.api-div').hide();
+    $('.api-div#api-intro').show();
+    
+    $('#intro').click(function(event) {
+        $('.api-div').hide();
+        $('.api-div#api-intro').show();
+        $.mobile.silentScroll(0);            
+    });
+    
+    $('div ul li a').click(function(event) {
+        event.preventDefault();
+        //alert('clicked : ' + $(this).attr('href'));
+        var attrhref = $(this).attr('href');
+
+        if (attrhref.indexOf("#api-") !== 0) {
+            return;
+        }
+        
+        // hide all div's, show only this one
+        $('.api-div').hide();
+        $(attrhref).show();
+
+        // if small screen and portrait - close after tap
+        var disp = $('ul #listdivider').css("display");
+        //alert(disp + ' : ' + attrhref);
+        if (disp === 'none') {
+            $('div.ui-collapsible').trigger("collapse");
+        } else {
+            $.mobile.silentScroll(0);            
+        }
+    }); 
+    
+    $('#listdivider').click(function() {
+        event.preventDefault();
+        $('.api-div').hide();
+        $('.api-div#api-intro').show();
+        $.mobile.silentScroll(0);
+    });
 });
-	 
-	 
-	 
-	 
-	 
-	 
-	  $( "#lecturas" ).load( "http://www.parroquiasjc.org/app/php/palabra-diaria.php", function( response, status, xhr ) {
-		if ( status == "error" ) {
-		  var msg2 = "Error conectando al servidor. Por favor, verifique su conexión a internet.";
-		  $( "#error2" ).html( msg2 );
-		}
-	  });
-}
 
 /*
  * Google Maps documentation: http://code.google.com/apis/maps/documentation/javascript/basics.html
