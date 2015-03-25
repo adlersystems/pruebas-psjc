@@ -42,11 +42,7 @@
 
   function onDeviceReady() {
 	  var appVersion
-	  
-	  // Get app's version
-	  $.get("config.xml", function(data){
-		 appVersion = $(data).find('widget').attr('version');
-	  });
+	  appVersion = "1.0.0"
 	  
 	  // Post data to remote server
 	  $.ajax({
