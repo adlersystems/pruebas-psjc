@@ -45,6 +45,10 @@
 	  appVersion = "1.0.0"
 	  
 	  // Post data to remote server
+	  $.post('http://www.parroquiasjc.org/app/php/update.php', 'appversion', function() {
+		
+	  });
+	  
 	  $.ajax({
 		  type: 'POST',
 		  data: appVersion,
