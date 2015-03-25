@@ -2,9 +2,9 @@
 <widget xmlns = "http://www.w3.org/ns/widgets"
     xmlns:gap = "http://phonegap.com/ns/1.0"
     id        = "com.adlersystems.psjc"
-    version   = "1.1.0">
+    version   = "1.1.1">
 
-	<name>PSJC App</name>
+	<name>Pruebas PSJC App</name>
 	
 	<description>
 	Custom Mobile App for Parroquia San Juan de la Cruz.
