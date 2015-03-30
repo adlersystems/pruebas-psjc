@@ -6,8 +6,6 @@
   
   <script src="js/jquery-2.1.3.min.js"></script>
   <script src="js/jquery.mobile-1.4.5.min.js"></script>
-  <script type="text/javascript" src="js/custom.js"></script>
-  <script type="text/javascript" src="js/jquery.oLoader.min.js"></script>
   
   <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
   <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
@@ -30,6 +28,12 @@
 	return eval(jsStr)
   }
   
+  /* enviando mails */
+  function sendMail(){
+	  window.location.href = "mailto:info@parroquiasjc.org";
+  }
+  
+  /* oLoader */
   $(function(){
 	  $('body').oLoader({
         wholeWindow: true,
@@ -47,7 +51,7 @@
   </script>
 </head>
 
-<body onload="onBodyLoad()">
+<body>
   <!-- Home -->
   <div data-role="page" id="home" data-theme="e">
     <!-- header -->
@@ -100,6 +104,14 @@
 	
 	<!-- content -->
 	<div role="main" class="ui-content" id="lecturas">
+     <script>
+	  $( "#lecturas" ).load( "http://www.parroquiasjc.org/app/php/palabra-diaria.php", function( response, status, xhr ) {
+	  if ( status == "error" ) {
+	  var msg = "Sorry but there was an error: ";
+	  $( "#error2" ).html( msg + xhr.status + " " + xhr.statusText );
+	  }
+	  });
+	 </script>
      <div id="error2"></div>
 	</div>
 	<!-- /content -->
@@ -184,6 +196,14 @@
     
     <!-- content -->
 	<div role="main" class="ui-content" id="noticias">
+	  <script>
+        $( "#noticias" ).load( "http://www.parroquiasjc.org/app/php/avisos.php", function( response, status, xhr ) {
+        if ( status == "error" ) {
+        var msg = "Sorry but there was an error: ";
+        $( "#error3" ).html( msg + xhr.status + " " + xhr.statusText );
+        }
+        });
+      </script>
       <div id="error3"></div>
 	</div>
 	<!-- /content -->
