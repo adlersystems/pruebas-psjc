@@ -68,8 +68,8 @@
 		<script>
           $( "#updates" ).load( "http://www.parroquiasjc.org/app/php/update.php", function( response, status, xhr ) {
           if ( status == "error" ) {
-			var msg = "Sorry but there was an error: ";
-			$( "#error2" ).html( msg + xhr.status + " " + xhr.statusText );
+			var msg = "Error de conexión: ";
+			$( "#error1" ).html( msg + xhr.status + " " + xhr.statusText );
           }
           });
         </script>
@@ -108,7 +108,7 @@
      <script>
 	  $( "#lecturas" ).load( "http://www.parroquiasjc.org/app/php/palabra-diaria.php", function( response, status, xhr ) {
 	  if ( status == "error" ) {
-	  var msg = "Sorry but there was an error: ";
+	  var msg = "Error de conexión: ";
 	  $( "#error2" ).html( msg + xhr.status + " " + xhr.statusText );
 	  }
 	  });
@@ -200,7 +200,7 @@
 	  <script>
         $( "#noticias" ).load( "http://www.parroquiasjc.org/app/php/avisos.php", function( response, status, xhr ) {
         if ( status == "error" ) {
-        var msg = "Sorry but there was an error: ";
+        var msg = "Error de conexión: ";
         $( "#error3" ).html( msg + xhr.status + " " + xhr.statusText );
         }
         });
