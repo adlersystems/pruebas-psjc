@@ -13,6 +13,7 @@ if ($cantAvisos > 0){
 		?>
         <div data-role="collapsible">
           <h4><?php echo $avisos['titulo'] ?></h4>
+          <p><strong><?php echo $avisos['expiracion'] ?></strong></p>
           <?php echo $avisos['contenido'] ?>
         </div>
         <?php

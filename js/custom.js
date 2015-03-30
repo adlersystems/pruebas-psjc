@@ -1,58 +1,35 @@
 // JavaScript Document
 
-function onBackbutton() {
-    // the intro div is considered home, so exit if use
-    // wants to go back with button from there
-    if ($('.api-div#api-intro').css('display') === 'block') {
-        console.log("Exiting app");
-        navigator.app.exitApp();
-    } else {    
-        $('.api-div').hide();
-        $('.api-div#api-intro').show();
-        $.mobile.silentScroll(0);
-    }
+/* 
+* carga inicial de la app
+*/
+function onBodyLoad() {    
+	document.addEventListener("deviceready", onDeviceReady, false);
 }
 
-$(document).ready(function() {   
-    $('.api-div').hide();
-    $('.api-div#api-intro').show();
-    
-    $('#intro').click(function(event) {
-        $('.api-div').hide();
-        $('.api-div#api-intro').show();
-        $.mobile.silentScroll(0);            
-    });
-    
-    $('div ul li a').click(function(event) {
-        event.preventDefault();
-        //alert('clicked : ' + $(this).attr('href'));
-        var attrhref = $(this).attr('href');
+function onDeviceReady(){
+	/* Carga de las Lecturas */
+	$( "#lecturas" ).load( "http://www.parroquiasjc.org/app/php/palabra-diaria.php", function( response, status, xhr ) {
+		if ( status == "error" ) {
+			var msg = "Sorry but there was an error: ";
+			$( "#error2" ).html( msg + xhr.status + " " + xhr.statusText );
+		}
+	});
+	
+	/* Carga de las Noticias */
+	$( "#noticias" ).load( "http://www.parroquiasjc.org/app/php/avisos.php", function( response, status, xhr ) {
+		if ( status == "error" ) {
+			var msg = "Sorry but there was an error: ";
+			$( "#error3" ).html( msg + xhr.status + " " + xhr.statusText );
+		}
+	});
+	
+	/* Botón Enviar Mail */
+	function sendMail(){
+		window.location.href = "mailto:info@parroquiasjc.org";
+	}
+}
 
-        if (attrhref.indexOf("#api-") !== 0) {
-            return;
-        }
-        
-        // hide all div's, show only this one
-        $('.api-div').hide();
-        $(attrhref).show();
-
-        // if small screen and portrait - close after tap
-        var disp = $('ul #listdivider').css("display");
-        //alert(disp + ' : ' + attrhref);
-        if (disp === 'none') {
-            $('div.ui-collapsible').trigger("collapse");
-        } else {
-            $.mobile.silentScroll(0);            
-        }
-    }); 
-    
-    $('#listdivider').click(function() {
-        event.preventDefault();
-        $('.api-div').hide();
-        $('.api-div#api-intro').show();
-        $.mobile.silentScroll(0);
-    });
-});
 
 /*
  * Google Maps documentation: http://code.google.com/apis/maps/documentation/javascript/basics.html

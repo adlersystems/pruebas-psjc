@@ -34,27 +34,6 @@
   function sendMail(){
 	  window.location.href = "mailto: webmaster@parroquiasjc.org";
   }
-  
-  /* onLoad */
-  function onLoad() {
-	  document.addEventListener("deviceready", onDeviceReady, false);
-  }
-
-  function onDeviceReady() {
-	  var appVersion
-	  appVersion = "1.0.0"
-	  
-	  // Post data to remote server
-	  $.post('http://www.parroquiasjc.org/app/php/update.php', 'appversion', function() {
-		
-	  });
-	  
-	  $.ajax({
-		  type: 'POST',
-		  data: appVersion,
-		  url: 'http://www.parroquiasjc.org/app/php/update.php',
-	  });
-  }
   </script>
   
 </head>
