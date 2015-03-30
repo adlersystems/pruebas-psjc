@@ -2,7 +2,7 @@
 
 function onBackbutton() {
 	// Exit if user wants to go back with button from home page
-	if(!window.location.hash) {
+	if(!window.location.hash || window.location.hash == 'home') {
 		console.log("Exiting app");
         navigator.app.exitApp();
 	}
